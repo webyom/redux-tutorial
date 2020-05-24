@@ -1,14 +1,14 @@
-import { createStore, Action } from 'redux';
+import { createStore, AnyAction } from 'redux';
 import { INCREMENT, DECREMENT } from './action-types';
 
 export const DEFAULT_STATE = 0;
 
-function counter(state = DEFAULT_STATE, action: Action): number {
+function counter(state = DEFAULT_STATE, action: AnyAction): number {
   switch (action.type) {
     case INCREMENT:
-      return state + 1;
+      return state + action.count;
     case DECREMENT:
-      return state - 1;
+      return state - action.count;
     default:
       return state;
   }
