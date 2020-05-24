@@ -1,4 +1,5 @@
 import { DEFAULT_STATE, store } from './store';
+import { INCREMENT, DECREMENT } from './action-types';
 import '../styles/index.scss';
 
 class App implements Application {
@@ -16,7 +17,7 @@ class App implements Application {
     document.getElementById('btn-increase').addEventListener(
       'click',
       () => {
-        store.dispatch({ type: 'INCREMENT' });
+        store.dispatch({ type: INCREMENT });
       },
       false,
     );
@@ -24,7 +25,7 @@ class App implements Application {
     document.getElementById('btn-decrease').addEventListener(
       'click',
       () => {
-        store.dispatch({ type: 'DECREMENT' });
+        store.dispatch({ type: DECREMENT });
       },
       false,
     );
