@@ -1,0 +1,6 @@
+{
+  "host": {
+    "marketing": "https://dev-api-marketing.myhost.cn",
+    "introduce": "https://dev-api-introduce.myhost.cn"
+  }
+}

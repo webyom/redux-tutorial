@@ -1,0 +1,19 @@
+<!-- extend "~@mlz/webui-gulp/layouts/base.layout.html" -->
+
+<!-- section "head" -->
+<!-- /section -->
+
+<!-- section "content" -->
+<!-- include "/basic/scripts/main.css" if="%{{ENV === 'production' || ENV === 'staging' ? 'yes' : 'no'}}%" -->
+<link id="main-style" rel="template" href="/basic/scripts/main.css" />
+<div id="page-containner">
+  <div id="count"></div>
+  <button id="btn-increase">Increase</button> &nbsp;
+  <button id="btn-decrease">Decrease</button>
+</div>
+<!-- /section -->
+
+<!-- section "script" -->
+<!-- include "/basic/scripts/main.js" if="%{{ENV === 'production' || ENV === 'staging' ? 'yes' : 'no'}}%" -->
+<script id="main-script" type="text/template" src="/basic/scripts/main.js"></script>
+<!-- /section -->
