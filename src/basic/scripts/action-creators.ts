@@ -1,16 +1,5 @@
-import { AnyAction } from 'redux';
+import { createAction } from 'redux-actions';
 import { INCREMENT, DECREMENT } from './action-types';
 
-export function increase(count = 1): AnyAction {
-  return {
-    type: INCREMENT,
-    count: count,
-  };
-}
-
-export function decrease(count = 1): AnyAction {
-  return {
-    type: DECREMENT,
-    count: count,
-  };
-}
+export const increase = createAction(INCREMENT, (count: number) => ({ count }));
+export const decrease = createAction(DECREMENT, (count: number) => ({ count: -count }));

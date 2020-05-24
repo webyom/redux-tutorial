@@ -7,17 +7,20 @@ class App implements Application {
     document.getElementById('count').innerHTML = count.toString();
   }
 
-  async boot(): Promise<void> {
-    this.updateCount(store.getState());
+  render(): void {
+    const state = store.getState();
+    this.updateCount(state.count);
+  }
 
-    store.subscribe(() => {
-      this.updateCount(store.getState());
-    });
+  async boot(): Promise<void> {
+    this.render();
+
+    store.subscribe(this.render.bind(this));
 
     document.getElementById('btn-increase').addEventListener(
       'click',
       () => {
-        store.dispatch(increase());
+        store.dispatch(increase(1));
       },
       false,
     );
@@ -25,7 +28,7 @@ class App implements Application {
     document.getElementById('btn-decrease').addEventListener(
       'click',
       () => {
-        store.dispatch(decrease());
+        store.dispatch(decrease(1));
       },
       false,
     );

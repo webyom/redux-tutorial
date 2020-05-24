@@ -1,17 +1,19 @@
-import { createStore, AnyAction } from 'redux';
+import { createStore } from 'redux';
+import { handleActions } from 'redux-actions';
 import { INCREMENT, DECREMENT } from './action-types';
 
-export const DEFAULT_STATE = 0;
+export const DEFAULT_STATE = { count: 0 };
 
-function counter(state = DEFAULT_STATE, action: AnyAction): number {
-  switch (action.type) {
-    case INCREMENT:
-      return state + action.count;
-    case DECREMENT:
-      return state - action.count;
-    default:
-      return state;
-  }
-}
+const reducer = handleActions(
+  {
+    [INCREMENT]: (state, action) => ({
+      count: state.count + action.payload.count,
+    }),
+    [DECREMENT]: (state, action) => ({
+      count: state.count + action.payload.count,
+    }),
+  },
+  DEFAULT_STATE,
+);
 
-export const store = createStore(counter);
+export const store = createStore(reducer);
