@@ -1,5 +1,4 @@
-import { createAction } from 'redux-actions';
-import { INCREMENT, DECREMENT } from './action-types';
+import { createAction } from '@reduxjs/toolkit';
 
-export const increase = createAction(INCREMENT, (count: number) => ({ count }));
-export const decrease = createAction(DECREMENT, (count: number) => ({ count: -count }));
+export const increase = createAction('increment', (count: number) => ({ payload: { count } }));
+export const decrease = createAction('decrement', (count: number) => ({ payload: { count: -count } }));

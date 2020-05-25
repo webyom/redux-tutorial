@@ -1,19 +1,15 @@
-import { createStore } from 'redux';
-import { handleActions } from 'redux-actions';
-import { INCREMENT, DECREMENT } from './action-types';
+import { createReducer, configureStore } from '@reduxjs/toolkit';
+import { increase, decrease } from './action-creators';
 
 export const DEFAULT_STATE = { count: 0 };
 
-const reducer = handleActions(
-  {
-    [INCREMENT]: (state, action) => ({
-      count: state.count + action.payload.count,
-    }),
-    [DECREMENT]: (state, action) => ({
-      count: state.count + action.payload.count,
-    }),
-  },
-  DEFAULT_STATE,
-);
+const reducer = createReducer(DEFAULT_STATE, {
+  [increase.type]: (state, action) => ({
+    count: state.count + action.payload.count,
+  }),
+  [decrease.type]: (state, action) => ({
+    count: state.count + action.payload.count,
+  }),
+});
 
-export const store = createStore(reducer);
+export const store = configureStore({ reducer });
