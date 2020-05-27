@@ -1,5 +1,5 @@
 import { store } from './store';
-import { increase, decrease } from './action-creators';
+import { increase, decrease } from './count-slice';
 import '../styles/index.scss';
 
 class App implements Application {
