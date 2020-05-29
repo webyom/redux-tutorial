@@ -5,7 +5,7 @@ type CountPayload = {
   count: number;
 };
 
-type CountState = {
+export type CountState = {
   count: number;
   loading: boolean;
   error: Error;

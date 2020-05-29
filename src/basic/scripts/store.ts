@@ -1,4 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import countReducer from './count-slice';
+import logReducer from './log-slice';
 
-export const store = configureStore({ reducer: countReducer });
+export const store = configureStore({
+  reducer: combineReducers({
+    count: countReducer,
+    log: logReducer,
+  }),
+});
