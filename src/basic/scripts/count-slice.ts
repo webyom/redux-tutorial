@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, Dispatch, createAsyncThunk } from '@reduxjs/toolkit';
 import { apiCommon } from '../../common/scripts/base/fetch';
 
 type CountPayload = {
@@ -12,6 +12,14 @@ type CountState = {
 };
 
 const initialState: CountState = { count: 0, loading: false, error: null };
+
+export const fetchCount = createAsyncThunk(
+  'count/fetchCount',
+  async (): Promise<CountPayload> => {
+    const res = await apiCommon.get('/api/count/');
+    return { count: res.data.count };
+  },
+);
 
 const countSlice = createSlice({
   name: 'count',
@@ -33,40 +41,22 @@ const countSlice = createSlice({
         return { payload: { count: -count } };
       },
     },
-    fetchCountStart(state): void {
+  },
+  extraReducers: {
+    [fetchCount.pending.type]: (state): void => {
       state.loading = true;
     },
-    fetchCountSuccess: {
-      reducer(state, action: PayloadAction<CountPayload>): void {
-        state.count = action.payload.count;
-        state.loading = false;
-      },
-      prepare(count: number): { payload: CountPayload } {
-        return { payload: { count } };
-      },
+    [fetchCount.fulfilled.type]: (state, action: PayloadAction<CountPayload>): void => {
+      state.count = action.payload.count;
+      state.loading = false;
     },
-    fetchCountFail: {
-      reducer(state, action: PayloadAction<void, string, never, Error>): void {
-        state.error = action.error;
-        state.loading = false;
-      },
-      prepare(error: Error): { payload: any; error: Error } {
-        return { payload: null, error };
-      },
+    [fetchCount.rejected.type]: (state, action: PayloadAction<void, string, never, Error>): void => {
+      state.error = action.error;
+      state.loading = false;
     },
   },
 });
 
-export const { increase, decrease, fetchCountStart, fetchCountSuccess, fetchCountFail } = countSlice.actions;
+export const { increase, decrease } = countSlice.actions;
 
 export default countSlice.reducer;
-
-export const fetchCount = () => async (dispatch: Dispatch): Promise<void> => {
-  dispatch(fetchCountStart());
-  try {
-    const res = await apiCommon.get('/api/count/');
-    dispatch(fetchCountSuccess(res.data.count));
-  } catch (err) {
-    dispatch(fetchCountFail(new Error(err)));
-  }
-};
