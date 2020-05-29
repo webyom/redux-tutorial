@@ -6,12 +6,12 @@ interface XResponse extends Response {
 
 class API {
   public request: Function;
-  constructor(apiHostName: string) {
+  constructor(apiHostName = '') {
     this.request = (url: string, config?: any): Promise<XResponse> => {
       let response: XResponse;
       return new Promise((resolve, reject) => {
         let baseHost = '';
-        if (!/^http(s)?\/\//.test(url)) {
+        if (apiHostName && !/^http(s)?\/\//.test(url)) {
           baseHost = G.apiBase[apiHostName];
           if (!baseHost) {
             throw new Error(`Invalid apiHostName "${apiHostName}"`);
@@ -52,4 +52,4 @@ class API {
   }
 }
 
-export const apiCommon = new API('common');
+export const apiCommon = new API();

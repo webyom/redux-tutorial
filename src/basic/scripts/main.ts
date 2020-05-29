@@ -1,15 +1,15 @@
 import { store } from './store';
-import { increase, decrease } from './count-slice';
+import { increase, decrease, fetchCount } from './count-slice';
 import '../styles/index.scss';
 
 class App implements Application {
-  updateCount(count: number): void {
+  updateCount(count: string | number): void {
     document.getElementById('count').innerHTML = count.toString();
   }
 
   render(): void {
     const state = store.getState();
-    this.updateCount(state.count);
+    this.updateCount(state.error ? state.error.message : state.loading ? 'loading...' : state.count);
   }
 
   async boot(): Promise<void> {
@@ -32,6 +32,8 @@ class App implements Application {
       },
       false,
     );
+
+    store.dispatch(fetchCount());
   }
 }
 
