@@ -4,6 +4,8 @@ import http from 'http';
 import express from 'express';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
+import swaggerUi from 'swagger-ui-express';
+import { getSwaggerSpecs } from './swagger';
 import { config } from './config';
 
 const app = express();
@@ -32,6 +34,8 @@ const app = express();
 app.use(compression());
 app.use(express.static(path.join(__dirname, '../../build/')));
 app.use(cookieParser());
+
+config.ENV !== 'production' && app.use('/api-docs/', swaggerUi.serve, swaggerUi.setup(getSwaggerSpecs()));
 
 (function requireRoute(root: string, base: string): void {
   for (const route of fs.readdirSync(base)) {
