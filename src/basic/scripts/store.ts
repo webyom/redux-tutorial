@@ -8,3 +8,5 @@ export const store = configureStore({
     log: logReducer,
   }),
 });
+
+export type AppDispatch = typeof store.dispatch;

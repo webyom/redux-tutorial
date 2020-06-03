@@ -9,10 +9,10 @@
     "jsx": "react",
     "module": "ESNext",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "ES5",
     "lib": [
-      "esnext",
-      "dom"
+      "DOM",
+      "ES5"
     ]
   },
   "paths": {
