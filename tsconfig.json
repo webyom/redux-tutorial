@@ -10,15 +10,11 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "target": "ES5",
-    "lib": [
-      "DOM",
-      "ES5"
-    ]
-  },
-  "paths": {
-    "*": [
-      "./types/*"
-    ]
+    "lib": ["DOM", "ES5"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": [
     "src/**/*",

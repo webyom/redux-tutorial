@@ -1,8 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../basic/scripts/store';
-import { increase, decrease, fetchCount } from '../../basic/scripts/count-slice';
-import { log } from '../../basic/scripts/log-slice';
+import { RootState } from '@/basic/scripts/store';
+import { increase, decrease, fetchCount } from '@/basic/scripts/count-slice';
+import { log } from '@/basic/scripts/log-slice';
 
 export const CountComponent = (): React.ReactElement => {
   const dispatch = useDispatch();

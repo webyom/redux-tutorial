@@ -4,6 +4,7 @@ interface MicroTemplate {
 
 declare module '*.tpl.html' {
   const tpl: MicroTemplate;
+  export const render: typeof tpl.render;
   export default tpl;
 }
 

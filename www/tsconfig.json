@@ -9,8 +9,8 @@
     "target": "ESNext",
     "lib": ["ESNext"]
   },
-  "paths": {
-    "*": ["./types/*"]
-  },
-  "include": ["./src/**/*", "./types"]
+  "include": [
+    "src/**/*",
+    "types"
+  ]
 }

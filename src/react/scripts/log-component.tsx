@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { RootState } from '../../basic/scripts/store';
+import { RootState } from '@/basic/scripts/store';
 import { createSelector } from '@reduxjs/toolkit';
 
 type ContentProps = ReturnType<typeof mapState>;

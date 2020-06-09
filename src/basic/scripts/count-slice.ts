@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { apiCommon } from '../../common/scripts/base/fetch';
+import { apiCommon } from '@/common/scripts/base/fetch';
 
 type CountPayload = {
   count: number;

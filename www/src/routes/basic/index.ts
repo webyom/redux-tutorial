@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
+import { render } from '../../../build/tpl/basic/index.html';
 
 export = function(req: Request, res: Response): void {
-  const { render } = require('../../../build/tpl/basic/index.html');
-
   res.send(render());
 };
