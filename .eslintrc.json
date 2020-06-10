@@ -6,18 +6,26 @@
   "globals": {},
   "parser": "@typescript-eslint/parser",
   "plugins": [
-    "import",
     "react",
+    "import",
+    "promise",
     "@typescript-eslint",
     "prettier"
   ],
   "extends": [
     "eslint:recommended",
+    "plugin:react/recommended",
     "plugin:import/recommended",
+    "plugin:promise/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "no-console": 2,
     // Variables

@@ -30,7 +30,7 @@ class API {
           })
           .then(data => {
             response.data = data ? JSON.parse(data) : null;
-            resolve(response);
+            return resolve(response);
           })
           .catch(e => {
             reject(e);
